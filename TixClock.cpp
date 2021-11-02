@@ -1561,6 +1561,10 @@ if (DST == 1) {
         SHFL_CHK = 1;
     }
 
+    if((SHFL_CHK==1) && (second==1) || (second==5) || (second==9) || (second==13) || (second==17) || (second==21) || (second==25) || (second==29) || (second==33) || (second==37) || (second==41) || (second==45) || (second==49) || (second==53) || (second==57))
+    {
+      SHFL_CHK = 0;
+    }
 
     if(hour==1)
     {
