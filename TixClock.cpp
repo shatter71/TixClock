@@ -35,8 +35,10 @@ int BRIGHTNESS = 255;
 int TIME_CHK = 0;
 int TIME_CHK_DST = 0;
 int SHFL_CHK = 0;
+int hr10[3] = {0, 0, 0};
 int hr11[3] = {1, 0, 0};
 int hr12[3] = {1, 1, 0};
+int hr20[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int hr21[10] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int hr22[10] = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0};
 int hr23[10] = {1, 1, 1, 0, 0, 0, 0, 0, 0, 0};
@@ -46,11 +48,13 @@ int hr26[10] = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0};
 int hr27[10] = {1, 1, 1, 1, 1, 1, 1, 0, 0, 0};
 int hr28[10] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0};
 int hr29[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 0};
+int mn10[6] = {0, 0, 0, 0, 0, 0};
 int mn11[6] = {1, 0, 0, 0, 0, 0};
 int mn12[6] = {1, 1, 0, 0, 0, 0};
 int mn13[6] = {1, 1, 1, 0, 0, 0};
 int mn14[6] = {1, 1, 1, 1, 0, 0};
 int mn15[6] = {1, 1, 1, 1, 1, 0};
+int mn20[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int mn21[10] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int mn22[10] = {1, 1, 0, 0, 0, 0, 0, 0, 0, 0};
 int mn23[10] = {1, 1, 1, 0, 0, 0, 0, 0, 0, 0};
@@ -60,6 +64,7 @@ int mn26[10] = {1, 1, 1, 1, 1, 1, 0, 0, 0, 0};
 int mn27[10] = {1, 1, 1, 1, 1, 1, 1, 0, 0, 0};
 int mn28[10] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0};
 int mn29[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 0};
+int c = 0;
 
 
 Button BUTTON_HOUR = Button(PIN_BUTTON_HOUR,BUTTON_PULLUP_INTERNAL); //Setup button to adjust color of hour LEDs
@@ -142,811 +147,929 @@ void shuffle(int *array, size_t n)
 /*------------------------------------Hour LEDs------------------------------------*/
 void hour0()
 {
-    //leds[5] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr20[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour1()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (c = 0; 9; c++)
+    {
+    leds[hr21[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour2()
 {
-    leds[7] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (c = 0; 9; c++)
+    {
+    leds[hr22[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour3()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[7] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr23[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour4()
 {
-    leds[16] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr24[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour5()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[16] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr25[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour6()
 {
-    leds[7] = CRGB(hrr,hrg,hrb);
-    leds[16] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr26[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour7()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[7] = CRGB(hrr,hrg,hrb);
-    leds[16] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr27[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour8()
 {
-    leds[19] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr28[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour9()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[19] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr29[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour10()
 {
-    leds[5] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr20[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour11()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[5] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr21[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour12()
 {
-    leds[5] = CRGB(hrr,hrg,hrb);
-    leds[7] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr22[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour13()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[5] = CRGB(hrr,hrg,hrb);
-    leds[7] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr23[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour14()
 {
-    leds[5] = CRGB(hrr,hrg,hrb);
-    leds[16] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr24[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour15()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[5] = CRGB(hrr,hrg,hrb);
-    leds[16] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr25[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour16()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[7] = CRGB(hrr,hrg,hrb);
-    leds[16] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr26[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour17()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[5] = CRGB(hrr,hrg,hrb);
-    leds[7] = CRGB(hrr,hrg,hrb);
-    leds[16] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr27[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour18()
 {
-    leds[5] = CRGB(hrr,hrg,hrb);
-    leds[19] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr28[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour19()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[5] = CRGB(hrr,hrg,hrb);
-    leds[19] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr29[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour20()
 {
-    leds[6] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr12[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr20[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour21()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[6] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr12[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr21[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour22()
 {
-    leds[6] = CRGB(hrr,hrg,hrb);
-    leds[7] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr12[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr22[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 void hour23()
 {
-    leds[4] = CRGB(hrr,hrg,hrb);
-    leds[6] = CRGB(hrr,hrg,hrb);
-    leds[7] = CRGB(hrr,hrg,hrb);
+    for (int c = 0; 2; c++)
+    {
+    leds[hr12[c]] = CRGB(hrr,hrg,hrb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[hr23[c]] = CRGB(hrr,hrg,hrb);
+    }
 }
 
 /*----------------------------Minutes LEDs----------------------------*/
 void min0()
 {
-    //leds[62] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min1()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min2()
 {
-    leds[9] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min3()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min4()
 {
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min5()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min6()
 {
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min7()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min8()
 {
-    leds[21] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min9()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[21] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min10()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min11()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn21[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min12()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min13()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min14()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min15()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min16()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min17()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min18()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[21] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min19()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[21] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min20()
 {
-    leds[8] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min21()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn21[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min22()
 {
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min23()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min24()
 {
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min25()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min26()
 {
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min27()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min28()
 {
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[21] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min29()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[21] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min30()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min31()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn21[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min32()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min33()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min34()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min35()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min36()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min37()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min38()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[21] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min39()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[8] = CRGB(mnr,mng,mnb);
-    leds[21] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min40()
 {
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min41()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn21[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min42()
 {
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min43()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min44()
 {
-    leds[14] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min45()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min46()
 {
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min47()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min48()
 {
-    leds[15] = CRGB(mnr,mng,mnb);
-    leds[21] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min49()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
-    leds[21] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min50()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min51()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn21[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min52()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min53()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min54()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min55()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min56()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min57()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[9] = CRGB(mnr,mng,mnb);
-    leds[14] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min58()
 {
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
-    leds[21] = CRGB(mnr,mng,mnb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 void min59()
 {
-    leds[2] = CRGB(mnr,mng,mnb);
-    leds[3] = CRGB(mnr,mng,mnb);
-    leds[15] = CRGB(mnr,mng,mnb);
-    leds[21] = CRGB(mnr,mng,mnb);
-}
-
-/*----------------------------Seconds LEDs----------------------------*/
-void sec0()
-{
-    //leds[62] = CRGB(scr,scg,scb);
-}
-void sec1()
-{
-    leds[0] = CRGB(scr,scg,scb);
-}
-void sec2()
-{
-    leds[11] = CRGB(scr,scg,scb);
-}
-void sec3()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-}
-void sec4()
-{
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec5()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec6()
-{
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec7()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec8()
-{
-    leds[23] = CRGB(scr,scg,scb);
-}
-void sec9()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[23] = CRGB(scr,scg,scb);
-}
-void sec10()
-{
-    leds[1] = CRGB(scr,scg,scb);
-}
-void sec11()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-}
-void sec12()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-}
-void sec13()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-}
-void sec14()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec15()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec16()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec17()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec18()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[23] = CRGB(scr,scg,scb);
-}
-void sec19()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[23] = CRGB(scr,scg,scb);
-}
-void sec20()
-{
-    leds[10] = CRGB(scr,scg,scb);
-}
-void sec21()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-}
-void sec22()
-{
-    leds[10] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-}
-void sec23()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-}
-void sec24()
-{
-    leds[10] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec25()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec26()
-{
-    leds[10] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec27()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec28()
-{
-    leds[10] = CRGB(scr,scg,scb);
-    leds[23] = CRGB(scr,scg,scb);
-}
-void sec29()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[23] = CRGB(scr,scg,scb);
-}
-void sec30()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-}
-void sec31()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-}
-void sec32()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-}
-void sec33()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-}
-void sec34()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec35()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec36()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec37()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-}
-void sec38()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[23] = CRGB(scr,scg,scb);
-}
-void sec39()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[10] = CRGB(scr,scg,scb);
-    leds[23] = CRGB(scr,scg,scb);
-}
-void sec40()
-{
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec41()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec42()
-{
-    leds[11] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec43()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec44()
-{
-    leds[12] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec45()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec46()
-{
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec47()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec48()
-{
-    leds[13] = CRGB(scr,scg,scb);
-    leds[23] = CRGB(scr,scg,scb);
-}
-void sec49()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-    leds[23] = CRGB(scr,scg,scb);
-}
-void sec50()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec51()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec52()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec53()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec54()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec55()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec56()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec57()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[11] = CRGB(scr,scg,scb);
-    leds[12] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-}
-void sec58()
-{
-    leds[1] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-    leds[23] = CRGB(scr,scg,scb);
-}
-void sec59()
-{
-    leds[0] = CRGB(scr,scg,scb);
-    leds[1] = CRGB(scr,scg,scb);
-    leds[13] = CRGB(scr,scg,scb);
-    leds[23] = CRGB(scr,scg,scb);
+    for (int c = 0; 2; c++)
+    {
+    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    }
+    for (int c = 0; 9; c++)
+    {
+    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    }
 }
 
 void loop()
@@ -1357,7 +1480,8 @@ if (DST == 1) {
     }
 
     // Update the LED layout every four seconds
-    if((SHFL_CHK==0) && (second==0) || (second==4) || (second==8) || (second==12) || (second==16) || (second==20) || (second==24) || (second==28) || (second==32) || (second==36) || (second==40) || (second==44) || (second==48) || (second==52) || (second==56))
+    //if((SHFL_CHK==0) && (second==0) || (second==4) || (second==8) || (second==12) || (second==16) || (second==20) || (second==24) || (second==28) || (second==32) || (second==36) || (second==40) || (second==44) || (second==48) || (second==52) || (second==56))
+    if((SHFL_CHK==0) && (second % 4==0))
     {
         if(hour>10 && hour<20){
             shuffle(hr11, 3);
@@ -1786,252 +1910,7 @@ if (DST == 1) {
     {
       min0();
     }
-
-    if(second==0)
-    {
-      sec0();
-    }
-    if(second==1)
-    {
-      sec1();
-    }
-    if(second==2)
-    {
-      sec2();
-    }
-    if(second==3)
-    {
-      sec3();
-    }
-    if(second==4)
-    {
-      sec4();
-    }
-    if(second==5)
-    {
-      sec5();
-    }
-    if(second==6)
-    {
-      sec6();
-    }
-    if(second==7)
-    {
-      sec7();
-    }
-    if(second==8)
-    {
-      sec8();
-    }
-    if(second==9)
-    {
-      sec9();
-    }
-    if(second==10)
-    {
-      sec10();
-    }
-    if(second==11)
-    {
-      sec11();
-    }
-    if(second==12)
-    {
-      sec12();
-    }
-    if(second==13)
-    {
-      sec13();
-    }
-    if(second==14)
-    {
-      sec14();
-    }
-    if(second==15)
-    {
-      sec15();
-    }
-    if(second==16)
-    {
-      sec16();
-    }
-    if(second==17)
-    {
-      sec17();
-    }
-    if(second==18)
-    {
-      sec18();
-    }
-    if(second==19)
-    {
-      sec19();
-    }
-    if(second==20)
-    {
-      sec20();
-    }
-    if(second==21)
-    {
-      sec21();
-    }
-    if(second==22)
-    {
-      sec22();
-    }
-    if(second==23)
-    {
-      sec23();
-    }
-    if(second==24)
-    {
-      sec24();
-    }
-    if(second==25)
-    {
-      sec25();
-    }
-    if(second==26)
-    {
-      sec26();
-    }
-    if(second==27)
-    {
-      sec27();
-    }
-    if(second==28)
-    {
-      sec28();
-    }
-    if(second==29)
-    {
-      sec29();
-    }
-    if(second==30)
-    {
-      sec30();
-    }
-    if(second==31)
-    {
-      sec31();
-    }
-    if(second==32)
-    {
-      sec32();
-    }
-    if(second==33)
-    {
-      sec33();
-    }
-    if(second==34)
-    {
-      sec34();
-    }
-    if(second==35)
-    {
-      sec35();
-    }
-    if(second==36)
-    {
-      sec36();
-    }
-    if(second==37)
-    {
-      sec37();
-    }
-    if(second==38)
-    {
-      sec38();
-    }
-    if(second==39)
-    {
-      sec39();
-    }
-    if(second==40)
-    {
-      sec40();
-    }
-    if(second==41)
-    {
-      sec41();
-    }
-    if(second==42)
-    {
-      sec42();
-    }
-    if(second==43)
-    {
-      sec43();
-    }
-    if(second==44)
-    {
-      sec44();
-    }
-    if(second==45)
-    {
-      sec45();
-    }
-    if(second==46)
-    {
-      sec46();
-    }
-    if(second==47)
-    {
-      sec47();
-    }
-    if(second==48)
-    {
-      sec48();
-    }
-    if(second==49)
-    {
-      sec49();
-    }
-    if(second==50)
-    {
-      sec50();
-    }
-    if(second==51)
-    {
-      sec51();
-    }
-    if(second==52)
-    {
-      sec52();
-    }
-    if(second==53)
-    {
-      sec53();
-    }
-    if(second==54)
-    {
-      sec54();
-    }
-    if(second==55)
-    {
-      sec55();
-    }
-    if(second==56)
-    {
-      sec56();
-    }
-    if(second==57)
-    {
-      sec57();
-    }
-    if(second==58)
-    {
-      sec58();
-    }
-    if(second==59)
-    {
-      sec59();
-    }
-    if(second==60)
-    {
-      sec0();
-    }
-    
+ 
     FastLED.show();
     FastLED.clear();
     FastLED.show();  
