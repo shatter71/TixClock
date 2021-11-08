@@ -1105,11 +1105,11 @@ void loop()
     }
 
 if (DST == 1) {
-  if (month > 3 && month < 11)
+  if (month + 1 > 3 && month + 1 < 11)
       {
        DST_MODE = 1;
       }
-  else if (month == 3)
+  else if (month + 1 == 3)
       {
        if (day > 14)
            {
@@ -1194,9 +1194,9 @@ if (DST == 1) {
               DST_MODE = 0;
              }
       } 
-  else if (month == 11)
+  else if (month + 1 == 11)
       {
-       if (day > 7)
+       if (day > 6)
            {
             DST_MODE = 0;
            } 
