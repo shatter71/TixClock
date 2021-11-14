@@ -20,15 +20,17 @@
 #define MILITARY_MODE     0     //Set 24HR mode where hour is shown as 1-23 rather than 1-12 where 0 = 1-12 mode and 1 = 1-23 mode
 int NIGHT_CHK = 0;              //Night model toggle
 int WEEKEND_CHK = 0;            //Weekend mode toggle
-#define PIN_BUTTON_HOUR 14      //Set to GPIO PIN 14 
-#define PIN_BUTTON_MIN 12       //Set to GPIO PIN 12 
-#define PIN_BUTTON_SEC 13       //Set to GPIO PIN 13
-#define PIN_BUTTON_BRIGHT 5     //Set to GPIO PIN 5
+#define PIN_BUTTON_HR1 14      //Set to GPIO PIN 14 
+#define PIN_BUTTON_HR2 12       //Set to GPIO PIN 12 
+#define PIN_BUTTON_MN1 13       //Set to GPIO PIN 13
+#define PIN_BUTTON_MN2 15       //Set to GPIO PIN 15
+//#define PIN_BUTTON_BRIGHT 5     //Set to GPIO PIN 5
 #define DST             1       //DST adjustment toggle (set 0 if you don't want auto adjust, 1 if you do)
 
-int HOUR_COLOR = 1;  //red
-int MIN_COLOR = 5;   //green
-int SEC_COLOR = 4;   //blue
+int HR1_COLOR = 1;  //red
+int HR2_COLOR = 5;   //green
+int MN1_COLOR = 4;   //blue
+int MN2_COLOR = 6;   //purple
 int COLOR_CHK = 0;
 int DST_MODE = 0;
 int BRIGHTNESS = 255;
@@ -66,24 +68,26 @@ int mn28[10] = {1, 1, 1, 1, 1, 1, 1, 1, 0, 0};
 int mn29[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 0};
 int c = 0;
 
-
-Button BUTTON_HOUR = Button(PIN_BUTTON_HOUR,BUTTON_PULLUP_INTERNAL); //Setup button to adjust color of hour LEDs
-Button BUTTON_MIN = Button(PIN_BUTTON_MIN,BUTTON_PULLUP_INTERNAL); //Setup button to adjust color of minute LEDs
-Button BUTTON_SEC = Button(PIN_BUTTON_SEC,BUTTON_PULLUP_INTERNAL); //Setup button to adjust color of second LEDs
-Button BUTTON_BRIGHT = Button(PIN_BUTTON_BRIGHT,BUTTON_PULLUP_INTERNAL); //Setup button to adjust brightness
+Button BUTTON_HR1 = Button(PIN_BUTTON_HR1,BUTTON_PULLUP_INTERNAL); //Setup button to adjust color of hour tens place LEDs
+Button BUTTON_HR2 = Button(PIN_BUTTON_HR2,BUTTON_PULLUP_INTERNAL); //Setup button to adjust color of hour ones place LEDs
+Button BUTTON_MN1 = Button(PIN_BUTTON_MN1,BUTTON_PULLUP_INTERNAL); //Setup button to adjust color of minute tens place LEDs
+Button BUTTON_MN2 = Button(PIN_BUTTON_MN2,BUTTON_PULLUP_INTERNAL); //Setup button to adjust color of minute ones place LEDs
 
 CRGB leds[NUM_LEDS];
 
 //Default HOUR, MIN, SEC color values in RGB when powering up
-int hrr = 255;
-int hrg = 0;
-int hrb = 0;
-int mnr = 0;
-int mng = 255;
-int mnb = 0;
-int scr = 0;
-int scg = 0;
-int scb = 255;
+int hr1r = 255;
+int hr1g = 0;
+int hr1b = 0;
+int hr2r = 0;
+int hr2g = 255;
+int hr2b = 0;
+int mn1r = 0;
+int mn1g = 0;
+int mn1b = 255;
+int mn2r = 255;
+int mn2g = 0;
+int mn2b = 255;
 
 const char* ESP_HOST_NAME = "esp-" + ESP.getFlashChipId();
 //Your Wifi info
@@ -149,264 +153,264 @@ void hour0()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr10[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr20[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr20[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour1()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr10[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (c = 0; 9; c++)
     {
-    leds[hr21[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr21[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour2()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr10[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (c = 0; 9; c++)
     {
-    leds[hr22[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr22[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour3()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr10[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr23[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr23[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour4()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr10[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr24[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr24[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour5()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr10[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr25[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr25[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour6()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr10[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr26[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr26[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour7()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr10[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr27[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr27[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour8()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr10[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr28[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr28[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour9()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr10[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr10[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr29[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr29[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour10()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr11[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr20[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr20[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour11()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr11[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr21[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr21[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour12()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr11[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr22[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr22[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour13()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr11[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr23[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr23[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour14()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr11[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr24[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr24[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour15()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr11[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr25[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr25[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour16()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr11[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr26[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr26[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour17()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr11[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr27[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr27[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour18()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr11[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr28[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr28[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour19()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr11[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr11[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr29[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr29[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour20()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr12[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr12[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr20[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr20[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour21()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr12[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr12[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr21[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr21[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour22()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr12[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr12[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr22[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr22[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 void hour23()
 {
     for (int c = 0; 2; c++)
     {
-    leds[hr12[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr12[c]] = CRGB(hr1r,hr1g,hr1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[hr23[c]] = CRGB(hrr,hrg,hrb);
+    leds[hr23[c]] = CRGB(hr2r,hr2g,hr2b);
     }
 }
 
@@ -415,660 +419,660 @@ void min0()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    leds[mn10[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    leds[mn20[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min1()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    leds[mn10[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    leds[mn20[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min2()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    leds[mn10[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    leds[mn22[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min3()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    leds[mn10[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    leds[mn23[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min4()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    leds[mn10[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    leds[mn24[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min5()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    leds[mn10[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    leds[mn25[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min6()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    leds[mn10[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    leds[mn26[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min7()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    leds[mn10[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    leds[mn27[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min8()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    leds[mn10[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    leds[mn28[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min9()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn10[c]] = CRGB(mnr,mng,mnb);
+    leds[mn10[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    leds[mn29[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min10()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    leds[mn11[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    leds[mn20[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min11()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    leds[mn11[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn21[c]] = CRGB(mnr,mng,mnb);
+    leds[mn21[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min12()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    leds[mn11[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    leds[mn22[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min13()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    leds[mn11[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    leds[mn23[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min14()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    leds[mn11[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    leds[mn24[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min15()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    leds[mn11[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    leds[mn25[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min16()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    leds[mn11[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    leds[mn26[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min17()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    leds[mn11[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    leds[mn27[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min18()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    leds[mn11[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    leds[mn28[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min19()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn11[c]] = CRGB(mnr,mng,mnb);
+    leds[mn11[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    leds[mn29[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min20()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    leds[mn12[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    leds[mn20[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min21()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    leds[mn12[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn21[c]] = CRGB(mnr,mng,mnb);
+    leds[mn21[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min22()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    leds[mn12[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    leds[mn22[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min23()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    leds[mn12[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    leds[mn23[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min24()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    leds[mn12[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    leds[mn24[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min25()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    leds[mn12[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    leds[mn25[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min26()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    leds[mn12[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    leds[mn26[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min27()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    leds[mn12[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    leds[mn27[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min28()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    leds[mn12[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    leds[mn28[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min29()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn12[c]] = CRGB(mnr,mng,mnb);
+    leds[mn12[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    leds[mn29[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min30()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    leds[mn13[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    leds[mn20[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min31()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    leds[mn13[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn21[c]] = CRGB(mnr,mng,mnb);
+    leds[mn21[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min32()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    leds[mn13[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    leds[mn22[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min33()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    leds[mn13[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    leds[mn23[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min34()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    leds[mn13[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    leds[mn24[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min35()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    leds[mn13[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    leds[mn25[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min36()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    leds[mn13[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    leds[mn26[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min37()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    leds[mn13[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    leds[mn27[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min38()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    leds[mn13[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    leds[mn28[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min39()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn13[c]] = CRGB(mnr,mng,mnb);
+    leds[mn13[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    leds[mn29[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min40()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    leds[mn14[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    leds[mn20[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min41()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    leds[mn14[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn21[c]] = CRGB(mnr,mng,mnb);
+    leds[mn21[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min42()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    leds[mn14[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    leds[mn22[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min43()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    leds[mn14[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    leds[mn23[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min44()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    leds[mn14[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    leds[mn24[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min45()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    leds[mn14[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    leds[mn25[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min46()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    leds[mn14[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    leds[mn26[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min47()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    leds[mn14[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    leds[mn27[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min48()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    leds[mn14[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    leds[mn28[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min49()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn14[c]] = CRGB(mnr,mng,mnb);
+    leds[mn14[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    leds[mn29[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min50()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    leds[mn15[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn20[c]] = CRGB(mnr,mng,mnb);
+    leds[mn20[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min51()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    leds[mn15[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn21[c]] = CRGB(mnr,mng,mnb);
+    leds[mn21[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min52()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    leds[mn15[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn22[c]] = CRGB(mnr,mng,mnb);
+    leds[mn22[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min53()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    leds[mn15[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn23[c]] = CRGB(mnr,mng,mnb);
+    leds[mn23[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min54()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    leds[mn15[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn24[c]] = CRGB(mnr,mng,mnb);
+    leds[mn24[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min55()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    leds[mn15[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn25[c]] = CRGB(mnr,mng,mnb);
+    leds[mn25[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min56()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    leds[mn15[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn26[c]] = CRGB(mnr,mng,mnb);
+    leds[mn26[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min57()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    leds[mn15[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn27[c]] = CRGB(mnr,mng,mnb);
+    leds[mn27[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min58()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    leds[mn15[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn28[c]] = CRGB(mnr,mng,mnb);
+    leds[mn28[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 void min59()
 {
     for (int c = 0; 2; c++)
     {
-    leds[mn15[c]] = CRGB(mnr,mng,mnb);
+    leds[mn15[c]] = CRGB(mn1r,mn1g,mn1b);
     }
     for (int c = 0; 9; c++)
     {
-    leds[mn29[c]] = CRGB(mnr,mng,mnb);
+    leds[mn29[c]] = CRGB(mn2r,mn2g,mn2b);
     }
 }
 
@@ -1284,153 +1288,197 @@ if (DST == 1) {
 
     // Adjust brightness on key press
     //if (BUTTON_DST.heldFor(100) && now > (TIME_CHK + 7)) {
-    if (BUTTON_BRIGHT.uniquePress()) {
-      //Serial.println("Brightness adjusted!");
-      BRIGHTNESS = BRIGHTNESS + 64;
-      if (BRIGHTNESS > 255) {
-        BRIGHTNESS = 0;
-      }
-      FastLED.setBrightness(BRIGHTNESS);
-      TIME_CHK = now;
-    }
+    //if (BUTTON_BRIGHT.uniquePress()) {
+    //  //Serial.println("Brightness adjusted!");
+    //  BRIGHTNESS = BRIGHTNESS + 64;
+    //  if (BRIGHTNESS > 255) {
+    //    BRIGHTNESS = 0;
+    //  }
+    //  FastLED.setBrightness(BRIGHTNESS);
+    //  TIME_CHK = now;
+    //}
 
     // Check if we pressed the button to adjust the hour color...
     // Repeat the following loop for as long as we hold this button.
-    if (BUTTON_HOUR.uniquePress()) {
-      //Serial.println(HOUR_COLOR);
-      HOUR_COLOR = HOUR_COLOR + 1;
+    if (BUTTON_HR1.uniquePress()) {
+      //Serial.println(HR1_COLOR);
+      HR1_COLOR = HR1_COLOR + 1;
       COLOR_CHK = 1;
-      if (HOUR_COLOR > 6) {
-        HOUR_COLOR = 1;
+      if (HR1_COLOR > 6) {
+        HR1_COLOR = 1;
       }
     }
     
-    if (BUTTON_MIN.uniquePress()) {
-      //Serial.println(MIN_COLOR);
-      MIN_COLOR = MIN_COLOR + 1;
+    if (BUTTON_HR2.uniquePress()) {
+      //Serial.println(HR2_COLOR);
+      HR2_COLOR = HR2_COLOR + 1;
       COLOR_CHK = 1;
-      if (MIN_COLOR > 6) {
-        MIN_COLOR = 1;
+      if (HR2_COLOR > 6) {
+        HR2_COLOR = 1;
       }
     }
-    if (BUTTON_SEC.uniquePress()) {
-      //Serial.println(SEC_COLOR);
-      SEC_COLOR = SEC_COLOR + 1;
+    if (BUTTON_MN1.uniquePress()) {
+      //Serial.println(MN1_COLOR);
+      MN1_COLOR = MN1_COLOR + 1;
       COLOR_CHK = 1;
-      if (SEC_COLOR > 6) {
-        SEC_COLOR = 1;
+      if (MN1_COLOR > 6) {
+        MN1_COLOR = 1;
+      }
+    }
+    if (BUTTON_MN2.uniquePress()) {
+      //Serial.println(MN2_COLOR);
+      MN2_COLOR = MN2_COLOR + 1;
+      COLOR_CHK = 1;
+      if (MN2_COLOR > 6) {
+        MN2_COLOR = 1;
       }
     }
     
     if (COLOR_CHK == 1){
       COLOR_CHK = 0;
-      if (HOUR_COLOR == 1) { //red
-        hrr = 255;
-        hrg = 0;
-        hrb = 0;
+      if (HR1_COLOR == 1) { //red
+        hr1r = 255;
+        hr1g = 0;
+        hr1b = 0;
         //Serial.println("RED");
       }
-      if (HOUR_COLOR == 2) { //cyan
-        hrr = 0;
-        hrg = 255;
-        hrb = 255;
+      if (HR1_COLOR == 2) { //cyan
+        hr1r = 0;
+        hr1g = 255;
+        hr1b = 255;
         //Serial.println("YELLOW");
       }
-      if (HOUR_COLOR == 3) { //white
-        hrr = 255;
-        hrg = 255;
-        hrb = 255;
+      if (HR1_COLOR == 3) { //white
+        hr1r = 255;
+        hr1g = 255;
+        hr1b = 255;
         //Serial.println("WHITE");
       }
-      if (HOUR_COLOR == 4) { //blue
-        hrr = 0;
-        hrg = 0;
-        hrb = 255;
+      if (HR1_COLOR == 4) { //blue
+        hr1r = 0;
+        hr1g = 0;
+        hr1b = 255;
         //Serial.println("BLUE");
       }
-      if (HOUR_COLOR == 5) { //green
-        hrr = 0;
-        hrg = 255;
-        hrb = 0;
+      if (HR1_COLOR == 5) { //green
+        hr1r = 0;
+        hr1g = 255;
+        hr1b = 0;
         //Serial.println("GREEN");
       }
-      if (HOUR_COLOR == 6) { //purple
-        hrr = 255;
-        hrg = 0;
-        hrb = 255;
+      if (HR1_COLOR == 6) { //purple
+        hr1r = 255;
+        hr1g = 0;
+        hr1b = 255;
         //Serial.println("PURPLE");
       }
       
-      if (MIN_COLOR == 1) { //red
-        mnr = 255;
-        mng = 0;
-        mnb = 0;
+      if (HR2_COLOR == 1) { //red
+        hr2r = 255;
+        hr2g = 0;
+        hr2b = 0;
         //Serial.println("RED");
       }
-      if (MIN_COLOR == 2) { //cyan
-        mnr = 0;
-        mng = 255;
-        mnb = 255;
+      if (HR2_COLOR == 2) { //cyan
+        hr2r = 0;
+        hr2g = 255;
+        hr2b = 255;
         //Serial.println("YELLOW");
       }
-      if (MIN_COLOR == 3) { //white
-        mnr = 255;
-        mng = 255;
-        mnb = 255;
+      if (HR2_COLOR == 3) { //white
+        hr2r = 255;
+        hr2g = 255;
+        hr2b = 255;
         //Serial.println("WHITE");
       }
-      if (MIN_COLOR == 4) { //blue
-        mnr = 0;
-        mng = 0;
-        mnb = 255;
+      if (HR2_COLOR == 4) { //blue
+        hr2r = 0;
+        hr2g = 0;
+        hr2b = 255;
         //Serial.println("BLUE");
       }
-      if (MIN_COLOR == 5) { //green
-        mnr = 0;
-        mng = 255;
-        mnb = 0;
+      if (HR2_COLOR == 5) { //green
+        hr2r = 0;
+        hr2g = 255;
+        hr2b = 0;
         //Serial.println("GREEN");
       }
-      if (MIN_COLOR == 6) { //purple
-        mnr = 255;
-        mng = 0;
-        mnb = 255;
+      if (HR2_COLOR == 6) { //purple
+        hr2r = 255;
+        hr2g = 0;
+        hr2b = 255;
         //Serial.println("PURPLE");
       }
-      if (SEC_COLOR == 1) { //red
-        scr = 255;
-        scg = 0;
-        scb = 0;
+      if (MN1_COLOR == 1) { //red
+        mn1r = 255;
+        mn1g = 0;
+        mn1b = 0;
         //Serial.println("RED");
       }
-      if (SEC_COLOR == 2) { //cyan
-        scr = 0;
-        scg = 255;
-        scb = 255;
+      if (MN1_COLOR == 2) { //cyan
+        mn1r = 0;
+        mn1g = 255;
+        mn1b = 255;
         //Serial.println("YELLOW");
       }
-      if (SEC_COLOR == 3) { //white
-        scr = 255;
-        scg = 255;
-        scb = 255;
+      if (MN1_COLOR == 3) { //white
+        mn1r = 255;
+        mn1g = 255;
+        mn1b = 255;
         //Serial.println("WHITE");
       }
-      if (SEC_COLOR == 4) { //blue
-        scr = 0;
-        scg = 0;
-        scb = 255;
+      if (MN1_COLOR == 4) { //blue
+        mn1r = 0;
+        mn1g = 0;
+        mn1b = 255;
         //Serial.println("BLUE");
       }
-      if (SEC_COLOR == 5) { //green
-        scr = 0;
-        scg = 255;
-        scb = 0;
+      if (MN1_COLOR == 5) { //green
+        mn1r = 0;
+        mn1g = 255;
+        mn1b = 0;
         //Serial.println("GREEN");
       }
-      if (SEC_COLOR == 6) { //purple
-        scr = 255;
-        scg = 0;
-        scb = 255;
+      if (MN1_COLOR == 6) { //purple
+        mn1r = 255;
+        mn1g = 0;
+        mn1b = 255;
+        //Serial.println("PURPLE");
+      }
+      if (MN2_COLOR == 1) { //red
+        mn2r = 255;
+        mn2g = 0;
+        mn2b = 0;
+        //Serial.println("RED");
+      }
+      if (MN2_COLOR == 2) { //cyan
+        mn2r = 0;
+        mn2g = 255;
+        mn2b = 255;
+        //Serial.println("YELLOW");
+      }
+      if (MN2_COLOR == 3) { //white
+        mn2r = 255;
+        mn2g = 255;
+        mn2b = 255;
+        //Serial.println("WHITE");
+      }
+      if (MN2_COLOR == 4) { //blue
+        mn2r = 0;
+        mn2g = 0;
+        mn2b = 255;
+        //Serial.println("BLUE");
+      }
+      if (MN2_COLOR == 5) { //green
+        mn2r = 0;
+        mn2g = 255;
+        mn2b = 0;
+        //Serial.println("GREEN");
+      }
+      if (MN2_COLOR == 6) { //purple
+        mn2r = 255;
+        mn2g = 0;
+        mn2b = 255;
         //Serial.println("PURPLE");
       }
             
