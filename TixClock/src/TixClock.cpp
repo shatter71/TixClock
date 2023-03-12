@@ -1,3 +1,7 @@
+//
+// TixClock v1.0.1 - March 12, 2023
+//
+
 #include "Arduino.h"
 #include <ESP8266WiFi.h>
 #include <time.h>
@@ -97,7 +101,7 @@ const char* password = "password";
 
 //Your time zone
 int timezone = -8 * 3600; //UTC offset * 3600
-int dst = 0;
+//int dst = 0;
    
 WiFiClient wifiClient;
 
@@ -2145,10 +2149,15 @@ void loop()
     //Serial.print(" ");
     int hour=p_tm->tm_hour;
     int month=p_tm->tm_mon;
-    int day=p_tm->tm_mday;
+    int day=p_tm->tm_mday + 1;
     int minute=p_tm->tm_min;
     int second=p_tm->tm_sec;
-    int weekday=p_tm->tm_wday; //day of the week, range 0 to 6
+    int weekday=p_tm->tm_wday + 1; //day of the week, range 0 to 6
+
+//
+// Check if daylight savings time mode is set
+// If set then adjust time one hour back or forward based on date
+//
 
     if (DST == 1) { 
       if (DST_MODE == 0) {
